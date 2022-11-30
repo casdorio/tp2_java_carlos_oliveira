@@ -1,0 +1,102 @@
+package com.casdorio.app;
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
+public class calculadora {
+	static String operacao;
+	static float num1;
+	static float num2;
+	public static void main(String[] args) {
+		
+		Scanner input = new Scanner(System.in);
+
+		
+		try {
+			System.out.print("Informe o primeiro numero: ");
+			num1 = input.nextFloat();
+			setNum1(num1);
+			System.out.print("Informe o segundo numero: ");
+			num2 = input.nextFloat();
+			setNum2(num2);
+			
+		} catch(InputMismatchException e) {
+			System.out.println("[ERRO] É necessário informar um número!");
+			input.close();
+			return;
+		}
+		
+		System.out.print("Selecione a operação desejada:\r\n"
+						+ "[+] - Somar\r\n"
+						+ "[-] - Subtrair\r\n"
+						+ "[*] - Multiplicar\r\n"
+						+ "[/] - Dividir\r\n"
+						+ "[A] - Todas\r\n"
+						+ "Opção: "
+				);
+		operacao = input.next();
+		
+		System.out.println("Resultado: ");
+		
+		switch(operacao.toUpperCase()) {
+		case "+":
+			imprimir(somar());
+			break;
+		case "-":
+			imprimir(somar());
+			break;
+		case "*":
+			imprimir(somar());
+			break;
+		case "/":
+			imprimir(somar());
+			break;
+		case "A":
+			imprimir(somar(), "+");
+			imprimir(subtrair(), "-");
+			imprimir(multiplicar(), "*");
+			imprimir(dividir(), "/");
+			break;
+		default:
+			System.out.println("Operação invalida!");
+		}
+		
+		input.close();
+
+	}
+	
+	
+	public static void imprimir(float result) {
+		System.out.println("%.2f %s %.2f = %.2f".formatted(num1, operacao, num2, result));  
+	}
+	
+	public static void imprimir(float result, String operacao) {
+		System.out.println("%.2f %s %.2f = %.2f".formatted(num1, operacao, num2, result));  
+	}
+	public static float somar() {
+		return num1 + num2;
+	}
+	public static float subtrair() {
+		return num1 - num2;
+	}
+
+	public static float multiplicar() {
+		return num1 * num2;
+	}
+
+	public static float dividir() {
+		return num1 / num2;
+	}
+
+	public float getNum1() {
+		return num1;
+	}
+	public static void setNum1(float num11) {
+		num1 = num11;
+	}
+	public float getNum2() {
+		return num2;
+	}
+	public static void setNum2(float num22) {
+		num2 = num22;
+	}
+}
